@@ -1,0 +1,12 @@
+This skill ("playwright-cli") is redistributed from the Microsoft Playwright
+CLI repository — https://github.com/microsoft/playwright-cli
+(skills/playwright-cli) — under the Apache License, Version 2.0. The full
+license text is in LICENSE in this directory.
+
+Copyright (c) Microsoft Corporation.
+
+MODIFICATIONS: The SKILL.md in this directory has been modified (condensed /
+adapted) from the upstream version. Per Apache License 2.0 §4(b), this notice
+records that the files carried in this directory were changed from the
+originals. The Microsoft name and marks are used only to attribute origin and
+do not imply endorsement.

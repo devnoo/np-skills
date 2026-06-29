@@ -13,7 +13,9 @@ Optionally, scenarios compose from a per-module **action catalog** (`docs/codema
 ```
 np-skills/
 ├── install.sh                # symlinks each skill into ~/.claude/skills/
+├── THIRD-PARTY-LICENSES.md   # attribution + licenses for bundled upstream skills
 └── skills/
+    # ── core build workflow ────────────────────────────────
     ├── np-orchestrator/      # top-level orchestrator
     ├── brainstorm/           # diverge through fuzzy ideas (exploratory only)
     ├── grill/                # relentless interview + writes the spec
@@ -24,10 +26,27 @@ np-skills/
     ├── improve-architecture/ # periodic refactor survey (deep-modules vocabulary)
     ├── design-it-twice/      # parallel opposing-mandate sub-agents for design choices
     ├── tdd/                  # red→green→refactor enforcement
-    ├── code-review/          # subagent-driven review pass
-    ├── implement-figma/      # 1:1 Figma → code
-    ├── design-review/        # Playwright vs Figma comparison
-    └── build-with-team/      # spawns TeamCreate with the default roles
+    ├── code-review/          # subagent-driven review pass (drift detection)
+    ├── implement-figma/      # Figma → code with visual parity
+    ├── design-review/        # Playwright visual-regression vs Figma
+    ├── build-with-team/      # spawns TeamCreate with the default roles
+    # ── architecture verification ──────────────────────────
+    ├── likec4/               # author/maintain a LikeC4 architecture model
+    ├── verify-architecture/  # check code against the LikeC4 model
+    # ── web quality & frontend (bundled, see lineage) ──────
+    ├── accessibility/        # WCAG 2.2 / Lighthouse a11y
+    ├── best-practices/       # Lighthouse best-practices
+    ├── core-web-vitals/      # CWV tuning
+    ├── performance/          # Lighthouse performance
+    ├── web-quality-audit/    # umbrella Lighthouse audit
+    ├── composition-patterns/ # React composition patterns
+    ├── frontend-design/      # frontend design guidance
+    ├── security-audit/       # security review pass
+    ├── playwright-cli/       # drive the playwright-cli browser tool
+    # ── diagnostics & meta (bundled, see lineage) ──────────
+    ├── diagnosing-bugs/      # feedback-loop-first debugging discipline
+    ├── handoff/              # compact a session into a handoff doc
+    └── writing-great-skills/ # vocabulary + principles for authoring skills
 ```
 
 ## Install
@@ -88,9 +107,36 @@ When the team mode is engaged, `build-with-team` spawns:
 - **tester** — designs test cases at unit / integration / E2E levels
 - **design-reviewer** — uses `design-review` (Playwright vs Figma)
 
-## Lineage
+## Lineage & attribution
 
-- `brainstorm`, `write-plan`, `code-review`, `tdd` — adapted from [obra/superpowers](https://github.com/obra/superpowers)
-- `grill`, `improve-architecture`, `design-it-twice` — adapted from [mattpocock/skills](https://github.com/mattpocock/skills) (`grill-me`, `grill-with-docs`, `improve-codebase-architecture`)
-- `adr`, `codemap` — adapted from the mattpocock/skills ADR pattern and GSD codebase-mapper, with custom mode tags
-- `np-orchestrator`, `review-plan`, `design-review`, `implement-figma`, `build-with-team` — original to this library
+Every bundled third-party skill is under a permissive license (MIT or Apache
+2.0) and redistributed with attribution. Full per-upstream terms, copyright
+lines, and modification notices are in [`THIRD-PARTY-LICENSES.md`](THIRD-PARTY-LICENSES.md).
+
+**Original to this library** (authored by the np-skills maintainer):
+
+- `np-orchestrator`, `review-plan`, `design-review`, `build-with-team`
+- `likec4`, `verify-architecture` — the LikeC4 architecture-verification check
+- `implement-figma` — an independent, clean-room implementation (an earlier
+  version derived from OpenAI's Figma skill was removed; see the licenses file)
+
+**Adapted from [obra/superpowers](https://github.com/obra/superpowers)** — MIT © Jesse Vincent:
+
+- `brainstorm`, `write-plan`, `code-review`, `tdd`
+
+**Adapted from [mattpocock/skills](https://github.com/mattpocock/skills)** — MIT © Matt Pocock:
+
+- `grill` (`grill-me` + `grill-with-docs`), `improve-architecture`
+  (`improve-codebase-architecture`), `design-it-twice` (INTERFACE-DESIGN),
+  `adr`, `codemap`
+- redistributed largely verbatim: `diagnosing-bugs`, `handoff`,
+  `writing-great-skills`
+
+**Bundled from other upstreams** (see the licenses file for each):
+
+- `accessibility`, `best-practices`, `core-web-vitals`, `performance`,
+  `web-quality-audit` — [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills), MIT © Addy Osmani (the `seo` skill was not included)
+- `composition-patterns` — [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills), MIT
+- `security-audit` — [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill), MIT © Cloudflare, Inc.
+- `frontend-design` — [anthropics/skills](https://github.com/anthropics/skills), Apache 2.0 (modified)
+- `playwright-cli` — [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli), Apache 2.0 (modified)

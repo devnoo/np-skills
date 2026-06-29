@@ -1,0 +1,12 @@
+This skill ("frontend-design") is redistributed from the Anthropic skills
+repository — https://github.com/anthropics/skills (skills/frontend-design) —
+under the Apache License, Version 2.0. The full license text is in LICENSE.txt
+in this directory.
+
+Original work Copyright Anthropic, PBC.
+
+MODIFICATIONS: The SKILL.md in this directory has been modified (condensed /
+adapted) from the upstream version. Per Apache License 2.0 §4(b), this notice
+records that the files carried in this directory were changed from the
+originals. The Anthropic name and marks are used only to attribute origin and
+do not imply endorsement.
