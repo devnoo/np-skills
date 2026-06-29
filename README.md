@@ -107,6 +107,16 @@ When the team mode is engaged, `build-with-team` spawns:
 - **tester** — designs test cases at unit / integration / E2E levels
 - **design-reviewer** — uses `design-review` (Playwright vs Figma)
 
+## Licensing
+
+The original skills in this library — and the repo's own scripts and docs — are
+**MIT © Job Denoo** (see [`LICENSE`](LICENSE)). Several skills are adapted or
+redistributed from third-party projects and **remain under their own licenses**
+(all permissive — MIT or Apache 2.0); the root LICENSE does not relicense them.
+Per-upstream terms, copyright lines, and modification notices live in
+[`THIRD-PARTY-LICENSES.md`](THIRD-PARTY-LICENSES.md), with each bundled skill's
+`LICENSE`/`NOTICE` kept in its own directory.
+
 ## Lineage & attribution
 
 Every bundled third-party skill is under a permissive license (MIT or Apache
