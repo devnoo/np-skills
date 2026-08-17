@@ -63,7 +63,7 @@ container is matched to an app by normalized name (`adminConsole` → no `apps/a
 
 The JSON report includes every model relationship (`source`, `target`, `title`, `technology`).
 These are runtime integrations (REST, OIDC, NATS, S3) and cannot be derived from `package.json`
-(which only captures build-time `@vivian/*` deps). Verify them heuristically:
+(which only captures build-time `@<scope>/*` deps). Verify them heuristically:
 
 1. Resolve the source container's `sourcePath`.
 2. Grep it for evidence implied by the edge's `technology`/`title`:

@@ -12,8 +12,7 @@ Interview the user relentlessly about every aspect of this spec or plan until yo
 1. **Ask the questions one at a time.** Never batch.
 2. **For each question, provide your recommended answer** with a one-line reason. Use `AskUserQuestion` and put your recommendation first with `(Recommended)` in the label.
 3. **If a question can be answered by exploring the codebase, explore the codebase instead.** Don't ask the user what's already in their repo.
-4. **Load codemap docs if present.** If `docs/codemap/ARCHITECTURE.md` exists, read it before grilling — many architectural questions are pre-answered there. Also load `CONVENTIONS.md` or `TESTING.md` when the user's question touches those areas. If a loaded doc's `last_commit` frontmatter ≠ current `HEAD`, warn the user "codemap is N commits stale, treating with caution" but proceed.
-4. **Challenge fuzzy language.** If the user uses a term loosely ("cancellation", "user", "the dashboard"), ask which precise thing they mean before proceeding.
+4. **Challenge fuzzy language.** If the user uses a term loosely ("cancellation", "user", "the dashboard"), ask which precise thing they mean before proceeding — and once resolved, record it in the glossary (see *Domain language*).
 5. **Cross-reference existing decisions.** If a new answer contradicts something resolved earlier, surface the conflict and ask them to choose.
 6. **Don't let the user off the hook.** "We'll figure that out later" is only acceptable if the decision can be safely deferred without blocking other decisions. Otherwise, push.
 
@@ -61,9 +60,18 @@ ID each one `S1`, `S2`, … as you write it. The strict keywords are just a nota
 
 **The user reviews and extends them.** After you draft scenarios for a branch, show them and ask: "Here are the scenarios for X — anything to add, change, or split?" When the user says "grill me on the scenarios" or "add a scenario for Y", treat that as a first-class grilling target: probe the missing transition, draft the new `S<n>`, and add it to the spec. Extensions the user requests are not scope creep — they're the contract getting sharper.
 
-**Compose from the action catalog (if the project uses one).** When `docs/codemap/actions/<module>.md` exists, build scenarios from the actions already catalogued there — reuse the exact phrasing so steps stay a controlled vocabulary, not free text. When a scenario needs an action that isn't catalogued yet, **append it** to the right module's catalog (one line under Given/When/Then) as you write the scenario. This is the "add new ones" path: the catalog grows with the scenarios. It's advisory — if the project has no catalog, just write the Gherkin directly. See `codemap` for the format.
-
 For shape-defining decisions where the user is leaning one way but the alternative deserves a serious look, invoke `design-it-twice` to fan out two opposing designs in parallel and compare them on leverage, locality, and seam placement.
+
+## Domain language (the glossary contract)
+
+Grilling sharpens *words* as much as decisions. A plan built on a fuzzy vocabulary produces fuzzy code. If the project keeps a glossary (`CONTEXT.md` at root, or per-module via `CONTEXT-MAP.md`), treat maintaining it as a first-class grilling activity — the linguistic twin of the Scenarios contract. Four behaviors run throughout the session:
+
+1. **Challenge against the glossary.** When a term conflicts with an existing `CONTEXT.md` definition, surface it immediately: "Your glossary defines `cancellation` as X, but you seem to mean Y — which is it?"
+2. **Sharpen fuzzy or overloaded terms.** When the user says "account", ask: "the Customer or the User? Those are different things." Propose one precise canonical term and push the synonyms aside.
+3. **Cross-reference with code.** When the user states how something works, check whether the code agrees. Contradiction is a finding: "Your code cancels whole Orders, but you just said partial cancellation is possible — which is right?"
+4. **Update `CONTEXT.md` inline.** When a term resolves, write it down right then — don't batch. Create the file lazily: if no `CONTEXT.md` exists, create one at the first resolved term; if a `CONTEXT-MAP.md` exists, the repo has multiple contexts, so write to the right one. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
+
+`CONTEXT.md` is a glossary and nothing else — keep it free of implementation detail, scenarios, and decisions. Those live in the spec; terms live here. Adapted from mattpocock/skills grill-with-docs.
 
 ## When to stop
 
@@ -73,6 +81,7 @@ You stop when:
 - The user can describe what they're building without using any ambiguous terms.
 - You can predict, for any input scenario, what the implementation should do.
 - **Every settled behavior is captured as a Gherkin scenario**, the suite passes the four-pass coverage sweep, and the user has reviewed them.
+- Every term that was challenged or sharpened is recorded in the glossary, with no remaining ambiguous vocabulary (if the project keeps a `CONTEXT.md`).
 - The spec file is complete (no placeholders, every section filled, except possibly Open questions for explicitly-deferred items).
 
 When you stop, show the user the spec path and ask: "Spec at `<path>`. Anything else to challenge before we write the plan?"
@@ -91,7 +100,7 @@ Grill always produces or updates a spec file. There are two cases:
 
 **ADR offer:** when a decision passes the three-test rule (hard-to-reverse AND surprising-without-context AND result of a real trade-off), pause and ask the user: "This looks like an ADR candidate — should I invoke the `adr` skill to capture it?" If yes, hand off to `adr`. If no, log it in *Constraints & decisions made*. Don't write ADRs reflexively — most decisions don't qualify.
 
-If the project has a glossary (`CONTEXT.md` at root, or per-module via `CONTEXT-MAP.md`), check terms against it and call out conflicts immediately ("Your glossary defines `cancellation` as X, but you seem to mean Y here").
+**Glossary (`CONTEXT.md`):** the domain vocabulary, maintained inline as terms resolve — see *Domain language* above. This is project-level and lives outside the spec, so it outlives this one feature.
 
 ## What grill is not
 

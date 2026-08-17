@@ -31,7 +31,7 @@ The verbatim license texts live where the obligation attaches:
 - **Skills (adapted):** `grill` (from `grill-me` + `grill-with-docs`),
   `improve-architecture` (from `improve-codebase-architecture`),
   `design-it-twice` (from `improve-codebase-architecture` INTERFACE-DESIGN),
-  `adr` (ADR pattern), `codemap` (codebase-mapper pattern)
+  `adr` (ADR pattern)
 - **Skills (redistributed largely verbatim):** `writing-great-skills`
   (+ `GLOSSARY.md`), `diagnosing-bugs`, `handoff`
 - **Modified:** mixed — see per-skill notes above.
@@ -40,28 +40,16 @@ The verbatim license texts live where the obligation attaches:
 
 - **Repo:** https://github.com/addyosmani/web-quality-skills
 - **Copyright:** `Copyright (c) 2026 Addy Osmani`
-- **Skills:** `accessibility`, `best-practices`, `core-web-vitals`,
-  `performance`, `web-quality-audit`
-- **Note:** the upstream `seo` skill was intentionally **not** included.
+- **Skills:** `accessibility`, `best-practices`
+- **Note:** only these two were included; the upstream `seo`, `core-web-vitals`,
+  `performance`, and `web-quality-audit` skills are **not** bundled.
 - **Modified:** redistributed as-is.
 
-## vercel-labs/agent-skills — MIT (declared, no upstream LICENSE file)
-
-- **Repo:** https://github.com/vercel-labs/agent-skills (skills/composition-patterns)
-- **Copyright:** none stated upstream. MIT is declared in the upstream README,
-  SKILL.md frontmatter, and package.json, but the repo ships no LICENSE file
-  and no copyright line.
-- **Skills:** `composition-patterns`
-- **Handling:** the canonical MIT text is supplied locally at
-  `skills/composition-patterns/LICENSE`, attributed to Vercel on the basis of
-  that declared MIT license.
-
-### MIT License (covers obra, mattpocock, addyosmani, and the Vercel declaration above)
+### MIT License (covers obra, mattpocock, and addyosmani)
 
 > Copyright (c) 2025 Jesse Vincent
 > Copyright (c) 2026 Matt Pocock
 > Copyright (c) 2026 Addy Osmani
-> Copyright (c) Vercel, Inc. (vercel-labs/agent-skills)
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

@@ -11,8 +11,7 @@ You are routing a feature build through the np-skills chain. Do not implement di
 
 ```
 brainstorm? → grill → write-plan → review-plan? → implement (TDD) → code-review → design-review?
-                                                      │
-                                                      └── if team mode: build-with-team takes over from write-plan onward
+ if team mode: build-with-team takes over from write-plan onward
 ```
 
 `?` = conditional. `grill` is the default front-door — it always produces or updates the spec file at `docs/plans/<ts>-<slug>-spec.md`, so there's always a document before the plan.

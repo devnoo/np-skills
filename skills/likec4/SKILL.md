@@ -239,7 +239,7 @@ Read these before generating DSL for the corresponding diagram type:
 ## This repo (Vivian)
 
 The LikeC4 model for this monorepo lives in **`docs/architecture/`** — the single source
-model is `docs/architecture/vivian.likec4`. Edit/extend that file (LikeC4 auto-merges every
+model is `docs/architecture/<model>.likec4`. Edit/extend that file (LikeC4 auto-merges every
 `*.likec4` in the directory, so new files there are fine too).
 
 Use the repo's `bun` scripts rather than calling `likec4` directly — they pin the path:

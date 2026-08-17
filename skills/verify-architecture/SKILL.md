@@ -1,7 +1,7 @@
 ---
 name: verify-architecture
 description: >
-    Detect drift between the LikeC4 architecture model (docs/architecture/vivian.likec4) and the
+    Detect drift between the LikeC4 architecture model (docs/architecture/<model>.likec4) and the
     actual Bun/Turborepo code, in both directions, and reconcile it. Use when the user says
     "verify architecture", "check architecture drift", "does the diagram match the code", "is the
     architecture up to date", "the diagram is stale", after adding/removing an app or package, or
@@ -12,7 +12,7 @@ description: >
 
 # Verify architecture
 
-Compares `docs/architecture/vivian.likec4` against the real workspace and helps close the gap.
+Compares `docs/architecture/<model>.likec4` against the real workspace and helps close the gap.
 
 ## Quick start
 
@@ -43,7 +43,7 @@ report as a sticky comment. It never blocks — it informs. Nothing to do here; 
    relationship is wrong from a single grep — present it as a question.
 3. Present the consolidated drift list to the user. For **each** finding, ask which direction:
     - **Update the diagram (model←code)** — the code is right, the model is stale. Edit
-      `docs/architecture/vivian.likec4` directly: add/remove a `container`, fix a relationship, or
+      `docs/architecture/<model>.likec4` directly: add/remove a `container`, fix a relationship, or
       anchor a container with `metadata { sourcePath '...' }`. Use the `likec4` skill's
       `references/*.md` for DSL syntax. Then run `bun arch:check` to validate. (The published views
       regenerate from the model via `architecture-pages.yml` — no image editing needed.)
