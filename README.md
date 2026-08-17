@@ -8,10 +8,65 @@ Behavior is captured once as **Gherkin Given/When/Then scenarios** (Uncle Bob's 
 
 Implementation follows **GOOS** (*Growing Object-Oriented Software, Guided by Tests*): a double loop where each scenario is the outer acceptance test that stays red while inner unit cycles drive the design out, starting from a walking skeleton for new surfaces. Scenarios lower into plain tests by default (no Gherkin runtime needed) or into real **Cucumber** `.feature` files when a project opts in — see `skills/tdd/GOOS.md` and `skills/tdd/CUCUMBER.md`.
 
+## Install
+
+### As a plugin (recommended)
+
+```
+/plugin marketplace add devnoo/np-skills
+/plugin install np-skills@np-skills
+```
+
+This is the native path: Claude Code tracks the installed version and `/plugin update`
+pulls new releases. Plugin skills are namespaced by plugin name, so they're invoked as
+`/np-skills:grill`, `/np-skills:tdd`, and so on.
+
+Re-fetch the catalog after a new release with `/plugin marketplace update`.
+
+### Via `npx` (no plugin system)
+
+```sh
+npx github:devnoo/np-skills            # interactive: pick global or project
+npx github:devnoo/np-skills --global   # ~/.claude/skills/  (all projects)
+npx github:devnoo/np-skills --project  # ./.claude/skills/  (this project only)
+npx github:devnoo/np-skills --path=<dir>
+npx github:devnoo/np-skills --keep-existing
+```
+
+Files are **copied**, not symlinked — re-run any time to refresh. Re-running
+**overwrites** each skill by default so updates land cleanly; pass `--keep-existing`
+if you've hand-edited an installed skill and want to protect it. Installed this way
+the skills are plain user skills, invoked as `/grill` with no namespace.
+
+Pick one method or the other. Installing both leaves two copies of every skill —
+one in `~/.claude/skills/`, one in the plugin cache — and Claude will see duplicates.
+
+### Dev mode (symlink)
+
+If you're editing this repo and want edits to take effect immediately:
+
+```sh
+git clone https://github.com/devnoo/np-skills ~/np-skills && cd ~/np-skills
+./install.sh                              # symlinks to ~/.claude/skills/
+# or:
+node ./bin/np-skills.js --global --symlink
+```
+
+`./install.sh` and `--symlink` produce the same result; the shell script avoids the
+Node dependency. `--symlink` is rejected when running from an npx cache directory,
+since those symlinks would break when the cache is cleaned.
+
+### Releasing
+
+`version` in `.claude-plugin/plugin.json` pins the plugin: users only receive an
+update when that string changes. Bump it (and `package.json`) on every release.
+
 ## Layout
 
 ```
 np-skills/
+├── .claude-plugin/           # plugin.json + marketplace.json (plugin install path)
+├── bin/np-skills.js          # npx installer (copy, or --symlink for dev)
 ├── install.sh                # symlinks each skill into ~/.claude/skills/
 ├── THIRD-PARTY-LICENSES.md   # attribution + licenses for bundled upstream skills
 └── skills/

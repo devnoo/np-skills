@@ -1,7 +1,7 @@
 {
   "name": "np-skills",
   "version": "0.1.0",
-  "description": "Claude Code skill library — brainstorm, grill, plan, TDD, code review, design review, ADRs, codemap, deep-modules architecture survey, with optional team mode.",
+  "description": "Claude Code skill library — brainstorm, grill, plan, TDD, code review, design review, ADRs, deep-modules architecture survey, with optional team mode.",
   "bin": {
     "np-skills": "./bin/np-skills.js"
   },

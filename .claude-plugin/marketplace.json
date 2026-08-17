@@ -1,0 +1,25 @@
+{
+  "name": "np-skills",
+  "owner": {
+    "name": "Job Denoo",
+    "url": "https://github.com/devnoo"
+  },
+  "metadata": {
+    "description": "Job Denoo's Claude Code skill library."
+  },
+  "plugins": [
+    {
+      "name": "np-skills",
+      "source": "./",
+      "description": "A build-it-properly skill library for Claude Code: brainstorm → grill → plan → TDD implement → code review → design review, with Gherkin scenarios carried end to end.",
+      "category": "workflow",
+      "tags": [
+        "tdd",
+        "planning",
+        "code-review",
+        "architecture",
+        "figma"
+      ]
+    }
+  ]
+}
