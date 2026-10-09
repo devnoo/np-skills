@@ -84,6 +84,7 @@ np-skills/
     ├── implement-figma/      # Figma → code with visual parity
     ├── design-review/        # Playwright visual-regression vs Figma
     ├── build-with-team/      # spawns TeamCreate with the default roles
+    ├── visual-pr/            # PR description as a visual outline (invoke by name)
     # ── architecture verification ──────────────────────────
     ├── likec4/               # author/maintain a LikeC4 architecture model
     ├── verify-architecture/  # check code against the LikeC4 model
@@ -149,3 +150,4 @@ lines, and modification notices are in [`THIRD-PARTY-LICENSES.md`](THIRD-PARTY-L
 - `security-audit` — [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill), MIT © Cloudflare, Inc.
 - `frontend-design` — [anthropics/skills](https://github.com/anthropics/skills), Apache 2.0 (modified)
 - `playwright-cli` — [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli), Apache 2.0 (modified)
+- `visual-pr` — [humanlayer/skills](https://github.com/humanlayer/skills), MIT © HumanLayer (modified)

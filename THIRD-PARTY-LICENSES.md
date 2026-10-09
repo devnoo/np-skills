@@ -98,6 +98,16 @@ The verbatim license texts live where the obligation attaches:
 - **License text:** `skills/playwright-cli/LICENSE`
 - **Modified:** **yes** — recorded in `skills/playwright-cli/NOTICE` per §4(b).
 
+## humanlayer/skills — MIT
+
+- **Repo:** https://github.com/humanlayer/skills (plugins/visual-pr)
+- **Copyright:** `Copyright (c) 2026 HumanLayer`
+- **Skills:** `visual-pr` (+ `references/`)
+- **License text:** shipped upstream and retained at `skills/visual-pr/LICENSE`.
+- **Modified:** yes — `{SKILLBASE}` paths made relative, the `.humanlayer/tasks/` save path replaced
+  with `.git/visual-pr/`, a backup-and-confirm step added before overwriting an existing PR body,
+  a `gh`-less fallback added, and the HTML-artifact view in `show-me.md` replaced with screenshots.
+
 ---
 
 ## Originally authored for this library (no upstream)

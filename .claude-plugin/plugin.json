@@ -1,7 +1,7 @@
 {
   "name": "np-skills",
   "displayName": "np-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A build-it-properly skill library for Claude Code: brainstorm → grill → plan → TDD implement → code review → design review, with Gherkin scenarios carried end to end.",
   "author": {
     "name": "Job Denoo",
