@@ -80,6 +80,7 @@ np-skills/
     ├── improve-architecture/ # periodic refactor survey (deep-modules vocabulary)
     ├── design-it-twice/      # parallel opposing-mandate sub-agents for design choices
     ├── tdd/                  # red→green→refactor enforcement
+    ├── implement/            # spec/ticket → code: tdd + clean code + architecture gate (lang/*.md)
     ├── code-review/          # subagent-driven review pass (drift detection)
     ├── implement-figma/      # Figma → code with visual parity
     ├── design-review/        # Playwright visual-regression vs Figma
@@ -139,7 +140,9 @@ lines, and modification notices are in [`THIRD-PARTY-LICENSES.md`](THIRD-PARTY-L
 **Adapted from [mattpocock/skills](https://github.com/mattpocock/skills)** — MIT © Matt Pocock:
 
 - `grill` (`grill-me` + `grill-with-docs`), `improve-architecture`
-  (`improve-codebase-architecture`), `design-it-twice` (INTERFACE-DESIGN), `adr`
+  (`improve-codebase-architecture`), `design-it-twice` (INTERFACE-DESIGN), `adr`,
+  `implement` (`implement`; its rules section also adapts
+  [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), MIT)
 - redistributed largely verbatim: `diagnosing-bugs`, `handoff`,
   `writing-great-skills`
 

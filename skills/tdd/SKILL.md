@@ -43,6 +43,7 @@ RED → VERIFY RED → GREEN → VERIFY GREEN → REFACTOR → repeat
 
 ### 1. RED — write one failing test
 
+- **Decide first whether and where to test** — read `TEST-VALUE.md` (this skill directory): name the failure the test catches and pick the fastest level that sees it. Wiring, types, and library behaviour don't get their own test.
 - Write a **single** test that asserts the next slice of behavior.
 - **When a task opens a new scenario** (its `**Implements:**` names an `S<n>` no earlier task has started), write that scenario's **acceptance test first** — copy the Given/When/Then in as Arrange/Act/Assert, tag it with the ID (`it("[S1] …")`), and put it in the acceptance suite. It fails now and stays red until the scenario is fully built (this task, or a later one if the scenario spans subtasks). Don't re-author it in subsequent tasks — it already exists, still red. See "Scenarios → tests" below.
 - The rest of the cycle in this task drives **unit** tests inward toward making that acceptance test pass.
@@ -139,7 +140,8 @@ Sniff the project for existing test runner config (`vitest.config.*`, `jest.conf
 
 ## Verification checklist (must pass before declaring a task done)
 
-- [ ] Every behavior in the task has a test asserting it.
+- [ ] Every behavior in the task has a test asserting it, at the fastest level that catches its failure (`TEST-VALUE.md`).
+- [ ] No test duplicates one at a faster level; the unit suite didn't get slower without a reason.
 - [ ] Each scenario this task opened has an acceptance test that was written first and went red for the right reason.
 - [ ] Any scenario this task *completes* is now green; scenarios still mid-build are intentionally red in the acceptance suite (not mistaken for regressions).
 - [ ] Every test was red before it was green.

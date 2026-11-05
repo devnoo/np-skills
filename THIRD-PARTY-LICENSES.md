@@ -31,10 +31,20 @@ The verbatim license texts live where the obligation attaches:
 - **Skills (adapted):** `grill` (from `grill-me` + `grill-with-docs`),
   `improve-architecture` (from `improve-codebase-architecture`),
   `design-it-twice` (from `improve-codebase-architecture` INTERFACE-DESIGN),
-  `adr` (ADR pattern)
+  `adr` (ADR pattern), `implement` (from `implement`)
 - **Skills (redistributed largely verbatim):** `writing-great-skills`
   (+ `GLOSSARY.md`), `diagnosing-bugs`, `handoff`
 - **Modified:** mixed — see per-skill notes above.
+
+## multica-ai/andrej-karpathy-skills — MIT
+
+- **Repo:** https://github.com/multica-ai/andrej-karpathy-skills
+- **Copyright:** the repository's authors (MIT declared in `.claude-plugin/plugin.json`;
+  no LICENSE file upstream)
+- **Skills (adapted):** `implement` — its "Rules" section paraphrases the four
+  Karpathy guidelines (think first, simplicity, surgical changes, goal-driven)
+- **Modified:** yes — rewritten, and "surgical changes" widened to allow
+  renames/moves of touched symbols.
 
 ## addyosmani/web-quality-skills — MIT
 
