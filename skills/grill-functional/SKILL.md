@@ -1,6 +1,6 @@
 ---
 name: grill-functional
-description: Run a refinement session on WHAT to build — first the features as bullets, then "what if…?" scenarios the user did not think of, including error cases — until it is clear what is going to be built, and write the short spec. Use when the user wants to stress-test a feature idea, says "grill me", "functional grill", "refine this", or after brainstorm; the default front door for a new feature. Purely functional: technical design is grill-technical, which runs next. Adapted from mattpocock/skills grill-me + grill-with-docs.
+description: Run a refinement session on WHAT to build — first the general idea as a flow line and the features as bullets, then "what if…?" scenarios the user did not think of, including error cases — until it is clear what is going to be built, and write the short spec. Use when the user wants to stress-test a feature idea, says "grill me", "functional grill", "refine this", or after brainstorm; the default front door for a new feature. Purely functional: technical design is grill-technical, which runs next. Adapted from mattpocock/skills grill-me + grill-with-docs.
 ---
 
 # grill-functional
@@ -8,11 +8,14 @@ description: Run a refinement session on WHAT to build — first the features as
 A refinement session. The user says what they want; you play the team that asks "yes, but what if…?" until it is clear what is going to be built.
 
 ```
-1. FEATURES            2. WHAT IF…?              3. DONE
+1. IDEA                 2. WHAT IF…?              3. DONE
 "what are we building,  per feature: scenarios    clear what is
  what does it do?"      the user did not think of going to be built
- → bullets F1, F2…      → scenarios S1, S2…       → grill-technical
+ → flow line            → scenarios S1, S2…       → clean-up? renumber
+ → bullets F1, F2…                                → grill-technical
 ```
+
+**The general idea comes first, and stays visible.** The what-ifs are the detail; the flow is the picture they hang on. Never skip it.
 
 **Purely functional.** No modules, tables, interfaces or call order. A technical point that comes up goes under *Technical questions* in the spec, unanswered, for `grill-technical`.
 
@@ -26,16 +29,26 @@ The user does not read long text. This outranks completeness of wording, never c
 - **The spec has no prose sections.** Bullets, tables, scenarios. Nothing is written twice.
 - **Cut before you send.** Reread the turn and delete every sentence the user could answer without.
 
-## 1. Features
+## 1. Idea
 
 Ask only this: **"What is the feature we are building? What does it do?"**
 
-Turn the answer into bullets, one feature each, in the user's words, ID'd `F1`, `F2`, …. Show them and ask "is this the list?". Nothing else happens until the list is confirmed.
+Turn the answer into two things, and show both in one turn:
+
+1. **The flow** — the general idea as one line (or a short ASCII flow when it branches): who starts it, the steps, where it ends. Happy path only.
+2. **The features** — bullets, one feature each, in the user's words, ID'd `F1`, `F2`, ….
 
 ```markdown
+**Flow:** person opens Runs → clicks Cancel on a run → run shows Stopping → run is Cancelled
+
 - **F1** A person can cancel a run from the Runs page.
 - **F2** Every held run says why it is held.
 ```
+
+Ask "is this the idea and the list?". Nothing else happens until both are confirmed.
+
+- **Always a flow.** Even a one-feature idea gets a line. If you cannot draw it, the idea is not clear yet — ask about that first.
+- **Every feature sits on the flow.** A feature that fits nowhere means the flow is missing a step, or the feature is out of scope.
 
 - One line per feature. A feature that needs "and" is two features.
 - Don't ask about users, edge cases or scope yet. That is step 2.
@@ -45,10 +58,11 @@ Turn the answer into bullets, one feature each, in the user's words, ID'd `F1`, 
 
 Take one feature at a time. **You come up with the scenarios**; the user confirms or corrects. Play the refinement: "the user pushes this button, but then fills in this field — then that happens, right?"
 
-For each feature, show a batch of at most five what-ifs, each with the outcome you assume:
+For each feature, repeat the flow line on top (mark the step the feature touches), then show a batch of at most five what-ifs, each with the outcome you assume:
 
 ```markdown
 **F1 — cancel a run**
+Runs → **Cancel** → Stopping → Cancelled
 
 | # | What if… | Then (my guess) |
 | --- | --- | --- |
@@ -63,26 +77,36 @@ The user answers `ok`, or names the row that is wrong. Fix it, then the next bat
 - **Guess, don't interrogate.** Always propose the outcome. Check the code or the existing product for how it behaves today before guessing. A guess the user corrects is faster than an open question.
 - **A real choice gets its own question.** When you cannot guess — two outcomes are both reasonable and they differ for the user — ask that one alone, in chat, with your recommendation first and one line per alternative. One such question per turn.
 - **Domain language only.** No class, table or function names, no HTTP verbs. If a stakeholder who cannot code could not read the row, rewrite it.
-- **A what-if can add a feature.** If an answer reveals one, add it as the next `F<n>` and say so.
+- **A what-if can add a feature.** If an answer reveals one, add it as the next `F<n>`, update the flow if it adds a step, and say so.
 - **Out of scope is an answer.** "We don't handle that" goes in *Out of scope*, with the what-if that raised it.
 
 ## 3. Done
 
 Stop when it is clear what is going to be built:
 
+- the flow is confirmed and still matches the features;
 - every feature has its what-ifs answered, including at least one error case;
 - no row is still a guess the user has not seen;
 - you could tell, for any situation, what the product does;
 - the user can say what is being built without a fuzzy word.
 
+**Then review the scenarios once.** Read the whole list and look for rows that overlap, duplicate or contradict each other. If there are some, propose a clean-up in one table: each merge or drop, and the renumbering as `old → new`. Apply it only after the user says `ok`, then update the spec.
+
+- **Once, at the end.** Don't renumber during step 2.
+- **Only when it helps.** A handful of near-duplicates is worth it. A list that is just long is not: skip the review and say "no clean-up needed".
+- **Don't lose behavior.** A merged scenario keeps every outcome of the rows it replaces.
+
 Then ask: "Spec at `<path>`. Anything else on behavior before the technical grill (`grill-technical`)?"
 
 ## The spec
 
-Write it as you go, to `docs/specs/<ts>-<slug>.md` (`date -u +%Y-%m-%dT%H%M%S`; use `docs/plans/` only if the repo has no `docs/specs/`). Create it once the feature list is confirmed; update it after every answer.
+Write it as you go, to `docs/specs/<ts>-<slug>.md` (`date -u +%Y-%m-%dT%H%M%S`; use `docs/plans/` only if the repo has no `docs/specs/`). Create it once the flow and feature list are confirmed; update it after every answer.
 
 ```markdown
 # Spec: <name>
+
+## Flow
+person opens Runs → clicks Cancel → run shows Stopping → run is Cancelled
 
 ## Features
 - **F1** …
@@ -99,7 +123,7 @@ Scenario: S1 — <short name>
 ## Technical questions (for grill-technical)
 ```
 
-- **Scenarios are the contract.** Each confirmed what-if row becomes one Gherkin scenario — one transition each, `S<n>` kept from the table. `write-plan`, `to-issues` and `tdd` read them from here by ID.
+- **Scenarios are the contract.** Each confirmed what-if row becomes one Gherkin scenario — one transition each, `S<n>` kept from the table. `implement`, `to-issues` and `tdd` read them from here by ID.
 - **Short.** Bullets, tables and scenarios. No paragraph longer than two lines, no section that restates another. A spec the user will not read end to end protects nothing.
 - **No design.** No Architecture or How section; `grill-technical` adds `## How` later.
 
